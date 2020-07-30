@@ -27,14 +27,6 @@ const AppNavigator = createSharedElementStackNavigator(
               inputRange: [0, 0.5, 1],
               outputRange: [0, 0.2, 1],
             }),
-            transform: [
-              {
-                translateY: progress.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [200, 0],
-                }),
-              },
-            ],
           },
         };
       },

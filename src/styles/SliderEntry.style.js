@@ -73,13 +73,15 @@ export default StyleSheet.create({
     shadowOpacity: 0.25,
     shadowOffset: { width: 0, height: 10 },
     shadowRadius: 10,
-    opacity: 0.8,
+    // opacity: 0.8,
   },
   textInnerCtr: {
     flex: 1,
-    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
     paddingHorizontal: 20,
     paddingVertical: 20,
+    flexDirection: 'row',
   },
   nameOverlay: {
     ...StyleSheet.absoluteFill,
@@ -123,5 +125,10 @@ export default StyleSheet.create({
   },
   subtitleEven: {
     color: 'rgba(255, 255, 255, 0.7)',
+  },
+  avatar: {
+    width: 44,
+    height: 44,
+    borderRadius: 44 / 2,
   },
 });

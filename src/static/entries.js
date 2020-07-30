@@ -2,7 +2,7 @@ export const ENTRIES1 = [
   {
     placeId: '1',
     title: 'Antelope Canyon',
-    subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
+    subtitle: 'Lorem ipsum dolor sit ',
     illustration: 'https://i.imgur.com/UYiroysl.jpg',
   },
   {
@@ -20,7 +20,7 @@ export const ENTRIES1 = [
   {
     placeId: '4',
     title: 'Greece',
-    subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
+    subtitle: 'Lorem ipsum dolor sit ',
     illustration: 'https://i.imgur.com/KZsmUi2l.jpg',
   },
   {

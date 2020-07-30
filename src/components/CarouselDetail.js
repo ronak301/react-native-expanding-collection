@@ -39,10 +39,17 @@ const Detail = (props) => {
       </SharedElement>
       <SafeAreaView style={styles.thumbnailOverlay}>
         <Icon.Button
+          size={24}
           name="x"
           backgroundColor="transparent"
           underlayColor="transparent"
           onPress={() => goBack()}
+          style={{
+            shadowColor: 'black',
+            shadowOpacity: 0.25,
+            shadowOffset: { width: 0, height: 10 },
+            shadowRadius: 10,
+          }}
         />
       </SafeAreaView>
       <Description data={data} />

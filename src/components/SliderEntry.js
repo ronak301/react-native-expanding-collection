@@ -52,7 +52,12 @@ export default (props) => {
 
   const translateY = animation.interpolate({
     inputRange: [0, 1],
-    outputRange: [0, 100],
+    outputRange: [0, 60],
+  });
+
+  const imageTranslateY = animation.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, -40],
   });
 
   const getImage = () => {
@@ -120,22 +125,25 @@ export default (props) => {
       ]}
     >
       <View style={styles.textInnerCtr}>
-        {uppercaseTitle}
-        <Animated.Text
-          style={[
-            styles.subtitle,
-            {
-              transform: [
-                {
-                  scale: textScale,
-                },
-              ],
-            },
-          ]}
-          numberOfLines={1}
-        >
-          {subtitle}
-        </Animated.Text>
+        <View>
+          {uppercaseTitle}
+          <Animated.Text
+            style={[
+              styles.subtitle,
+              {
+                transform: [
+                  {
+                    scale: textScale,
+                  },
+                ],
+              },
+            ]}
+            numberOfLines={1}
+          >
+            {subtitle}
+          </Animated.Text>
+        </View>
+        <Image style={styles.avatar} source={{ uri: illustration }} />
       </View>
     </Animated.View>
   );
@@ -143,6 +151,7 @@ export default (props) => {
   const nameOverlay = <View style={styles.nameOverlay}>{headerTitle}</View>;
   return (
     <TouchableOpacity
+      hitSlop={{ bottom: 100 }}
       activeOpacity={1}
       style={styles.slideInnerContainer}
       onPress={() => {
@@ -157,7 +166,19 @@ export default (props) => {
       >
         {txtCtr}
         <SharedElement id={placeId}>
-          <Image source={{ uri: illustration }} style={styles.image} />
+          <Animated.Image
+            source={{ uri: illustration }}
+            style={[
+              styles.image,
+              {
+                transform: [
+                  {
+                    translateY: imageTranslateY,
+                  },
+                ],
+              },
+            ]}
+          />
         </SharedElement>
         {nameOverlay}
       </View>
