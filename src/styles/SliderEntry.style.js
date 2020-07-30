@@ -43,8 +43,7 @@ export default StyleSheet.create({
     flex: 1,
     marginBottom: IS_IOS ? 0 : -1, // Prevent a random Android rendering issue
     backgroundColor: 'white',
-    borderTopLeftRadius: entryBorderRadius,
-    borderTopRightRadius: entryBorderRadius,
+    borderRadius: entryBorderRadius,
   },
   imageContainerEven: {
     backgroundColor: colors.black,
@@ -52,9 +51,7 @@ export default StyleSheet.create({
   image: {
     ...StyleSheet.absoluteFillObject,
     resizeMode: 'cover',
-    borderRadius: IS_IOS ? entryBorderRadius : 0,
-    borderTopLeftRadius: entryBorderRadius,
-    borderTopRightRadius: entryBorderRadius,
+    borderRadius: entryBorderRadius,
   },
   // image's border radius is buggy on iOS; let's hack it!
   radiusMask: {
@@ -69,22 +66,44 @@ export default StyleSheet.create({
     backgroundColor: colors.black,
   },
   textContainer: {
-    justifyContent: 'center',
-    paddingTop: 20 - entryBorderRadius,
-    paddingBottom: 20,
-    paddingHorizontal: 16,
+    ...StyleSheet.absoluteFill,
+    width: slideWidth,
+    height: slideHeight - 20,
     backgroundColor: 'white',
-    borderBottomLeftRadius: entryBorderRadius,
-    borderBottomRightRadius: entryBorderRadius,
+    borderRadius: entryBorderRadius,
+  },
+  nameOverlay: {
+    ...StyleSheet.absoluteFill,
+    width: slideWidth,
+    height: slideHeight - 20,
+    backgroundColor: 'white',
+    borderRadius: entryBorderRadius,
+    backgroundColor: 'transparent',
   },
   textContainerEven: {
-    backgroundColor: colors.black,
+    backgroundColor: 'white',
   },
   title: {
-    color: colors.black,
+    color: 'white',
     fontSize: 13,
     fontWeight: 'bold',
     letterSpacing: 0.5,
+  },
+  headerTitle: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 30,
+    color: 'white',
+    fontSize: 22,
+    fontWeight: 'bold',
+    letterSpacing: 0.5,
+    alignSelf: 'center',
+    textAlign: 'center',
+    shadowColor: colors.black,
+    shadowOpacity: 0.25,
+    shadowOffset: { width: 0, height: 10 },
+    shadowRadius: 10,
   },
   titleEven: {
     color: 'white',

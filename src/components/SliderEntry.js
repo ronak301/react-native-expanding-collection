@@ -55,6 +55,30 @@ export default class SliderEntry extends Component {
       false
     );
 
+    const headerTitle = title ? (
+      <Text style={styles.headerTitle} numberOfLines={1}>
+        {title.toUpperCase()}
+      </Text>
+    ) : (
+      false
+    );
+
+    const txtCtr = (
+      <View
+        style={[styles.textContainer, even ? styles.textContainerEven : {}]}
+      >
+        {uppercaseTitle}
+        <Text
+          style={[styles.subtitle, even ? styles.subtitleEven : {}]}
+          numberOfLines={2}
+        >
+          {subtitle}
+        </Text>
+      </View>
+    );
+
+    const nameOverlay = <View style={styles.nameOverlay}>{headerTitle}</View>;
+
     return (
       <TouchableOpacity
         activeOpacity={1}
@@ -65,21 +89,9 @@ export default class SliderEntry extends Component {
         <View
           style={[styles.imageContainer, even ? styles.imageContainerEven : {}]}
         >
+          {txtCtr}
           {this.image}
-          <View
-            style={[styles.radiusMask, even ? styles.radiusMaskEven : {}]}
-          />
-        </View>
-        <View
-          style={[styles.textContainer, even ? styles.textContainerEven : {}]}
-        >
-          {uppercaseTitle}
-          <Text
-            style={[styles.subtitle, even ? styles.subtitleEven : {}]}
-            numberOfLines={2}
-          >
-            {subtitle}
-          </Text>
+          {nameOverlay}
         </View>
       </TouchableOpacity>
     );
