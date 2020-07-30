@@ -52,8 +52,8 @@ export default StyleSheet.create({
     textAlign: 'center',
   },
   slider: {
-    marginTop: 15,
-    overflow: 'visible', // for custom animations
+    marginTop: 100,
+    overflow: 'visible', // for custom animations,
   },
   sliderContentContainer: {
     paddingVertical: 10, // for custom animation
