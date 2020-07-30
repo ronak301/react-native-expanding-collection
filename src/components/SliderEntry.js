@@ -3,6 +3,7 @@ import { View, Text, Image, TouchableOpacity, Animated } from 'react-native';
 import PropTypes from 'prop-types';
 import { ParallaxImage } from 'react-native-snap-carousel';
 import styles from '../styles/SliderEntry.style';
+import { SharedElement } from 'react-navigation-shared-element';
 
 export default (props) => {
   const {
@@ -23,34 +24,8 @@ export default (props) => {
         useNativeDriver: true,
       }).start();
     } else {
+      props.navigation.navigate('Details');
     }
-  };
-
-  const getImage = () => {
-    const {
-      data: { illustration },
-      parallax,
-      parallaxProps,
-      even,
-      id,
-    } = props;
-
-    return parallax ? (
-      <ParallaxImage
-        source={{ uri: illustration }}
-        containerStyle={[
-          styles.imageContainer,
-          even ? styles.imageContainerEven : {},
-        ]}
-        style={styles.image}
-        parallaxFactor={0.35}
-        showSpinner={true}
-        spinnerColor={even ? 'rgba(255, 255, 255, 0.4)' : 'rgba(0, 0, 0, 0.25)'}
-        {...parallaxProps}
-      />
-    ) : (
-      <Image source={{ uri: illustration }} style={styles.image} />
-    );
   };
 
   const headerTitle = title ? (
@@ -75,6 +50,37 @@ export default (props) => {
     inputRange: [0, 1],
     outputRange: [0, 100],
   });
+
+  const getImage = () => {
+    const {
+      data: { illustration },
+      parallax,
+      parallaxProps,
+      even,
+      id,
+    } = props;
+
+    return false ? (
+      <SharedElement id={id}>
+        <ParallaxImage
+          source={{ uri: illustration }}
+          containerStyle={[
+            styles.imageContainer,
+            even ? styles.imageContainerEven : {},
+          ]}
+          style={[styles.image]}
+          parallaxFactor={0.35}
+          showSpinner={true}
+          spinnerColor={
+            even ? 'rgba(255, 255, 255, 0.4)' : 'rgba(0, 0, 0, 0.25)'
+          }
+          {...parallaxProps}
+        />
+      </SharedElement>
+    ) : (
+      <Image source={{ uri: illustration }} style={styles.image} />
+    );
+  };
 
   const uppercaseTitle = title ? (
     <Animated.Text

@@ -30,28 +30,27 @@ export default class example extends Component {
     return <SliderEntry data={item} even={(index + 1) % 2 === 0} />;
   }
 
-  _renderItemWithParallax({ item, index }, parallaxProps) {
+  _renderItemWithParallax = ({ item, index }, parallaxProps) => {
     return (
       <SliderEntry
         data={item}
         even={(index + 1) % 2 === 0}
         parallax={true}
         parallaxProps={parallaxProps}
+        {...this.props}
       />
     );
-  }
+  };
 
-  _renderLightItem({ item, index }) {
+  _renderLightItem({ item }) {
     return <SliderEntry data={item} even={false} />;
   }
 
-  _renderDarkItem({ item, index }) {
+  _renderDarkItem({ item }) {
     return <SliderEntry data={item} even={true} />;
   }
 
-  mainExample(number, title) {
-    const { slider1ActiveSlide } = this.state;
-
+  mainExample() {
     return (
       <View style={styles.exampleContainer}>
         <Text style={styles.title}>{`Explore`}</Text>
@@ -87,10 +86,7 @@ export default class example extends Component {
   }
 
   render() {
-    const example1 = this.mainExample(
-      1,
-      'Default layout | Loop | Autoplay | Parallax | Scale | Opacity | Pagination with tappable dots'
-    );
+    const example1 = this.mainExample();
 
     return (
       <SafeAreaView style={styles.safeArea}>

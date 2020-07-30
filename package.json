@@ -6,6 +6,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-native-community/masked-view": "^0.1.10",
     "expo": "~38.0.8",
     "expo-splash-screen": "~0.4.0",
     "expo-status-bar": "^1.0.2",
@@ -13,13 +14,21 @@
     "react": "~16.11.0",
     "react-dom": "~16.11.0",
     "react-native": "~0.62.2",
-    "react-native-gesture-handler": "~1.6.1",
+    "react-native-gesture-handler": "^1.6.1",
     "react-native-linear-gradient": "^2.5.6",
-    "react-native-reanimated": "~1.9.0",
-    "react-native-screens": "~2.9.0",
+    "react-native-reanimated": "^1.9.0",
+    "react-native-redash": "^14.2.3",
+    "react-native-safe-area-context": "^3.1.1",
+    "react-native-screens": "^2.9.0",
+    "react-native-shared-element": "^0.7.0",
     "react-native-snap-carousel": "^4.0.0-beta.5",
     "react-native-unimodules": "~0.10.1",
-    "react-native-web": "~0.11.7"
+    "react-native-web": "~0.11.7",
+    "react-navigation": "^4.4.0",
+    "react-navigation-hooks": "^1.1.0",
+    "react-navigation-shared-element": "^2.3.1",
+    "react-navigation-stack": "^2.8.2",
+    "use-memo-one": "^1.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
