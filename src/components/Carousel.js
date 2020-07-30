@@ -35,7 +35,7 @@ export default class example extends Component {
       <SliderEntry
         data={item}
         even={(index + 1) % 2 === 0}
-        parallax={true}
+        parallax={false}
         parallaxProps={parallaxProps}
         {...this.props}
       />

@@ -7,9 +7,8 @@ import { SharedElement } from 'react-navigation-shared-element';
 
 export default (props) => {
   const {
-    data: { title, subtitle },
+    data: { title, subtitle, illustration, placeId },
     even,
-    id,
   } = props;
 
   const [selectedIndex, setSelectedIndex] = useState(null);
@@ -24,7 +23,12 @@ export default (props) => {
         useNativeDriver: true,
       }).start();
     } else {
-      props.navigation.navigate('Details');
+      Animated.timing(animation, {
+        toValue: 0,
+        duration: 500,
+        useNativeDriver: true,
+      }).start();
+      props.navigation.navigate('Details', { ...props });
     }
   };
 
@@ -53,32 +57,29 @@ export default (props) => {
 
   const getImage = () => {
     const {
-      data: { illustration },
+      data: { illustration, placeId },
       parallax,
       parallaxProps,
       even,
-      id,
     } = props;
 
-    return false ? (
-      <SharedElement id={id}>
-        <ParallaxImage
-          source={{ uri: illustration }}
-          containerStyle={[
-            styles.imageContainer,
-            even ? styles.imageContainerEven : {},
-          ]}
-          style={[styles.image]}
-          parallaxFactor={0.35}
-          showSpinner={true}
-          spinnerColor={
-            even ? 'rgba(255, 255, 255, 0.4)' : 'rgba(0, 0, 0, 0.25)'
-          }
-          {...parallaxProps}
-        />
-      </SharedElement>
+    return parallax ? (
+      <ParallaxImage
+        source={{ uri: illustration }}
+        containerStyle={[
+          styles.imageContainer,
+          even ? styles.imageContainerEven : {},
+        ]}
+        style={[styles.image]}
+        parallaxFactor={0.35}
+        showSpinner={true}
+        spinnerColor={even ? 'rgba(255, 255, 255, 0.4)' : 'rgba(0, 0, 0, 0.25)'}
+        {...parallaxProps}
+      />
     ) : (
-      <Image source={{ uri: illustration }} style={styles.image} />
+      <SharedElement id={placeId}>
+        <Image source={{ uri: illustration }} style={styles.image} />
+      </SharedElement>
     );
   };
 
@@ -131,7 +132,7 @@ export default (props) => {
               ],
             },
           ]}
-          numberOfLines={2}
+          numberOfLines={1}
         >
           {subtitle}
         </Animated.Text>
@@ -145,8 +146,8 @@ export default (props) => {
       activeOpacity={1}
       style={styles.slideInnerContainer}
       onPress={() => {
-        setSelectedIndex(id);
-        setIsExpanded(true);
+        setSelectedIndex(placeId);
+        setIsExpanded(!isExpanded);
         expand();
       }}
     >
@@ -155,7 +156,9 @@ export default (props) => {
         style={[styles.imageContainer, even ? styles.imageContainerEven : {}]}
       >
         {txtCtr}
-        {getImage()}
+        <SharedElement id={placeId}>
+          <Image source={{ uri: illustration }} style={styles.image} />
+        </SharedElement>
         {nameOverlay}
       </View>
     </TouchableOpacity>

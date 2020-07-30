@@ -45,10 +45,10 @@ export default StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: entryBorderRadius,
   },
-  imageContainerEven: {
-    backgroundColor: colors.black,
-  },
+  imageContainerEven: {},
   image: {
+    width: slideWidth,
+    height: slideHeight,
     ...StyleSheet.absoluteFillObject,
     resizeMode: 'cover',
     borderRadius: entryBorderRadius,
@@ -62,9 +62,7 @@ export default StyleSheet.create({
     height: entryBorderRadius,
     backgroundColor: 'white',
   },
-  radiusMaskEven: {
-    backgroundColor: colors.black,
-  },
+  radiusMaskEven: {},
   textContainer: {
     ...StyleSheet.absoluteFill,
     width: slideWidth,
@@ -91,9 +89,7 @@ export default StyleSheet.create({
     borderRadius: entryBorderRadius,
     backgroundColor: 'transparent',
   },
-  textContainerEven: {
-    backgroundColor: 'black',
-  },
+  textContainerEven: {},
   title: {
     color: 'rgba(0,0,0,0.6)',
     fontSize: 16,

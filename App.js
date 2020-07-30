@@ -18,6 +18,30 @@ const AppNavigator = createSharedElementStackNavigator(
   {
     initialRouteName: 'Places',
     headerMode: 'none',
+    defaultNavigationOptions: {
+      gestureEnabled: false,
+      cardStyleInterpolator: ({ current: { progress } }) => {
+        return {
+          cardStyle: {
+            opacity: progress.interpolate({
+              inputRange: [0, 0.5, 1],
+              outputRange: [0, 0.2, 1],
+            }),
+            transform: [
+              {
+                translateY: progress.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [200, 0],
+                }),
+              },
+            ],
+          },
+        };
+      },
+      cardStyle: {
+        backgroundColor: 'transparent',
+      },
+    },
   }
 );
 
