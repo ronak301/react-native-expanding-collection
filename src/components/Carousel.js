@@ -112,7 +112,7 @@ export default class example extends Component {
               bottom: 0,
               right: 0,
             }}
-            blurType="dark"
+            blurType="light"
             blurAmount={20}
             reducedTransparencyFallbackColor="white"
           />

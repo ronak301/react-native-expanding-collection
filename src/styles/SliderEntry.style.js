@@ -110,9 +110,9 @@ export default StyleSheet.create({
     alignSelf: 'center',
     textAlign: 'center',
     shadowColor: colors.black,
-    shadowOpacity: 0.25,
+    shadowOpacity: 0.75,
     shadowOffset: { width: 0, height: 10 },
-    shadowRadius: 10,
+    shadowRadius: 20,
   },
   titleEven: {
     color: 'black',
