@@ -101,13 +101,7 @@ export default class example extends Component {
             barStyle={'light-content'}
           />
           {this.gradient}
-          <ScrollView
-            style={styles.scrollview}
-            scrollEventThrottle={200}
-            directionalLockEnabled={true}
-          >
-            {example1}
-          </ScrollView>
+          {example1}
         </View>
       </SafeAreaView>
     );

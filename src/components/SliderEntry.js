@@ -1,24 +1,39 @@
-import React, { Component } from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import React, { useRef, useState } from 'react';
+import { View, Text, Image, TouchableOpacity, Animated } from 'react-native';
 import PropTypes from 'prop-types';
 import { ParallaxImage } from 'react-native-snap-carousel';
 import styles from '../styles/SliderEntry.style';
 
-export default class SliderEntry extends Component {
-  static propTypes = {
-    data: PropTypes.object.isRequired,
-    even: PropTypes.bool,
-    parallax: PropTypes.bool,
-    parallaxProps: PropTypes.object,
+export default (props) => {
+  const {
+    data: { title, subtitle },
+    even,
+    id,
+  } = props;
+
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const animation = useRef(new Animated.Value(0)).current;
+
+  const expand = () => {
+    if (!isExpanded) {
+      Animated.timing(animation, {
+        toValue: 1,
+        duration: 500,
+        useNativeDriver: true,
+      }).start();
+    } else {
+    }
   };
 
-  get image() {
+  const getImage = () => {
     const {
       data: { illustration },
       parallax,
       parallaxProps,
       even,
-    } = this.props;
+      id,
+    } = props;
 
     return parallax ? (
       <ParallaxImage
@@ -36,64 +51,107 @@ export default class SliderEntry extends Component {
     ) : (
       <Image source={{ uri: illustration }} style={styles.image} />
     );
-  }
+  };
 
-  render() {
-    const {
-      data: { title, subtitle },
-      even,
-    } = this.props;
+  const headerTitle = title ? (
+    <Text style={styles.headerTitle} numberOfLines={1}>
+      {title.toUpperCase()}
+    </Text>
+  ) : (
+    false
+  );
 
-    const uppercaseTitle = title ? (
-      <Text
-        style={[styles.title, even ? styles.titleEven : {}]}
-        numberOfLines={2}
-      >
-        {title.toUpperCase()}
-      </Text>
-    ) : (
-      false
-    );
+  const scale = animation.interpolate({
+    inputRange: [0, 1],
+    outputRange: [1, 1.1],
+  });
 
-    const headerTitle = title ? (
-      <Text style={styles.headerTitle} numberOfLines={1}>
-        {title.toUpperCase()}
-      </Text>
-    ) : (
-      false
-    );
+  const textScale = animation.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, 1],
+  });
 
-    const txtCtr = (
-      <View
-        style={[styles.textContainer, even ? styles.textContainerEven : {}]}
-      >
+  const translateY = animation.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, 100],
+  });
+
+  const uppercaseTitle = title ? (
+    <Animated.Text
+      style={[
+        styles.title,
+        {
+          transform: [
+            {
+              scale: textScale,
+            },
+          ],
+        },
+      ]}
+      numberOfLines={2}
+    >
+      {title.toUpperCase()}
+    </Animated.Text>
+  ) : (
+    false
+  );
+
+  const txtCtr = (
+    <Animated.View
+      style={[
+        styles.textContainer,
+        {
+          transform: [
+            {
+              translateY,
+            },
+            {
+              scale,
+            },
+          ],
+        },
+      ]}
+    >
+      <View style={styles.textInnerCtr}>
         {uppercaseTitle}
-        <Text
-          style={[styles.subtitle, even ? styles.subtitleEven : {}]}
+        <Animated.Text
+          style={[
+            styles.subtitle,
+            {
+              transform: [
+                {
+                  scale: textScale,
+                },
+              ],
+            },
+          ]}
           numberOfLines={2}
         >
           {subtitle}
-        </Text>
+        </Animated.Text>
       </View>
-    );
+    </Animated.View>
+  );
 
-    const nameOverlay = <View style={styles.nameOverlay}>{headerTitle}</View>;
-
-    return (
-      <TouchableOpacity
-        activeOpacity={1}
-        style={styles.slideInnerContainer}
-        onPress={() => {}}
+  const nameOverlay = <View style={styles.nameOverlay}>{headerTitle}</View>;
+  return (
+    <TouchableOpacity
+      activeOpacity={1}
+      style={styles.slideInnerContainer}
+      onPress={() => {
+        setSelectedIndex(id);
+        setIsExpanded(true);
+        expand();
+      }}
+    >
+      <View style={styles.shadow} />
+      <View
+        style={[styles.imageContainer, even ? styles.imageContainerEven : {}]}
       >
-        <View style={styles.shadow} />
-        <View
-          style={[styles.imageContainer, even ? styles.imageContainerEven : {}]}
-        >
-          {txtCtr}
-          {this.image}
-          {nameOverlay}
-        </View>
-      </TouchableOpacity>
-    );
-  }
-}
+        {txtCtr}
+        {getImage()}
+        {nameOverlay}
+      </View>
+    </TouchableOpacity>
+  );
+};

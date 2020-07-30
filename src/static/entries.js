@@ -1,30 +1,36 @@
 export const ENTRIES1 = [
   {
+    id: '1',
     title: 'Antelope Canyon',
     subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
     illustration: 'https://i.imgur.com/UYiroysl.jpg',
   },
   {
+    id: '2',
     title: 'NYC',
     subtitle: 'Lorem ipsum dolor sit amet',
     illustration: 'https://i.imgur.com/UPrs1EWl.jpg',
   },
   {
+    id: '3',
     title: 'LA',
     subtitle: 'Lorem ipsum dolor sit amet et nuncat ',
     illustration: 'https://i.imgur.com/MABUbpDl.jpg',
   },
   {
+    id: '4',
     title: 'Greece',
     subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
     illustration: 'https://i.imgur.com/KZsmUi2l.jpg',
   },
   {
+    id: '5',
     title: 'New Zealand',
     subtitle: 'Lorem ipsum dolor sit amet',
     illustration: 'https://i.imgur.com/2nCt3Sbl.jpg',
   },
   {
+    id: '6',
     title: 'Germany',
     subtitle: 'Lorem ipsum dolor sit amet',
     illustration: 'https://i.imgur.com/lceHsT6l.jpg',

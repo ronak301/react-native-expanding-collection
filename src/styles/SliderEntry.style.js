@@ -68,9 +68,20 @@ export default StyleSheet.create({
   textContainer: {
     ...StyleSheet.absoluteFill,
     width: slideWidth,
-    height: slideHeight - 20,
+    height: slideHeight * 0.9,
     backgroundColor: 'white',
     borderRadius: entryBorderRadius,
+    shadowColor: colors.black,
+    shadowOpacity: 0.25,
+    shadowOffset: { width: 0, height: 10 },
+    shadowRadius: 10,
+    opacity: 0.8,
+  },
+  textInnerCtr: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    paddingHorizontal: 20,
+    paddingVertical: 20,
   },
   nameOverlay: {
     ...StyleSheet.absoluteFill,
@@ -81,11 +92,11 @@ export default StyleSheet.create({
     backgroundColor: 'transparent',
   },
   textContainerEven: {
-    backgroundColor: 'white',
+    backgroundColor: 'black',
   },
   title: {
-    color: 'white',
-    fontSize: 13,
+    color: 'rgba(0,0,0,0.6)',
+    fontSize: 16,
     fontWeight: 'bold',
     letterSpacing: 0.5,
   },
@@ -106,7 +117,7 @@ export default StyleSheet.create({
     shadowRadius: 10,
   },
   titleEven: {
-    color: 'white',
+    color: 'black',
   },
   subtitle: {
     marginTop: 6,
