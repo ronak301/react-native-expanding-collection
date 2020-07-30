@@ -6,6 +6,8 @@ import {
   Text,
   StatusBar,
   SafeAreaView,
+  Image,
+  StyleSheet,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
@@ -14,6 +16,7 @@ import SliderEntry from './SliderEntry';
 import styles, { colors } from '../styles/index.style';
 import { ENTRIES1, ENTRIES2 } from '../static/entries';
 import { scrollInterpolators, animatedStyles } from '../utils/animations';
+import { BlurView } from '@react-native-community/blur';
 
 const IS_ANDROID = Platform.OS === 'android';
 const SLIDER_1_FIRST_ITEM = 1;
@@ -87,16 +90,32 @@ export default class example extends Component {
 
   render() {
     const example1 = this.mainExample();
-
+    const { slider1ActiveSlide } = this.state;
     return (
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
-          <StatusBar
-            translucent={true}
-            backgroundColor={'rgba(0, 0, 0, 0.3)'}
-            barStyle={'light-content'}
+          <Image
+            source={{ uri: ENTRIES1[slider1ActiveSlide].illustration }}
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              bottom: 0,
+              right: 0,
+            }}
           />
-          {this.gradient}
+          <BlurView
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              bottom: 0,
+              right: 0,
+            }}
+            blurType="dark"
+            blurAmount={20}
+            reducedTransparencyFallbackColor="white"
+          />
           {example1}
         </View>
       </SafeAreaView>
