@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  SafeAreaView,
-  Image,
-} from 'react-native';
+import { View, Text, SafeAreaView, Image } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Carousel from 'react-native-snap-carousel';
 import { sliderWidth, itemWidth } from '../styles/SliderEntry.style';
@@ -32,6 +27,7 @@ export default class example extends Component {
       <SliderEntry
         data={item}
         even={(index + 1) % 2 === 0}
+        /*making parallex as false, as it doesnt work well with shared element transition */
         parallax={false}
         parallaxProps={parallaxProps}
         {...this.props}
