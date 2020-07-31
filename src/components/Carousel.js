@@ -1,24 +1,18 @@
 import React, { Component } from 'react';
 import {
-  Platform,
   View,
-  ScrollView,
   Text,
-  StatusBar,
   SafeAreaView,
   Image,
-  StyleSheet,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import Carousel, { Pagination } from 'react-native-snap-carousel';
+import Carousel from 'react-native-snap-carousel';
 import { sliderWidth, itemWidth } from '../styles/SliderEntry.style';
 import SliderEntry from './SliderEntry';
 import styles, { colors } from '../styles/index.style';
-import { ENTRIES1, ENTRIES2 } from '../static/entries';
-import { scrollInterpolators, animatedStyles } from '../utils/animations';
+import { ENTRIES1 } from '../static/entries';
 import { BlurView } from '@react-native-community/blur';
 
-const IS_ANDROID = Platform.OS === 'android';
 const SLIDER_1_FIRST_ITEM = 1;
 
 export default class example extends Component {
